@@ -1,0 +1,48 @@
+# Default: treat all text files as LF, let git auto-detect text vs binary
+* text=auto eol=lf
+
+# Source code — explicitly LF
+*.py text eol=lf
+*.js text eol=lf
+*.jsx text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.scss text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.toml text eol=lf
+*.txt text eol=lf
+*.ipynb text eol=lf
+
+# Shell scripts must always be LF (Linux execution)
+*.sh text eol=lf
+
+# Windows scripts always CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Binary files — never convert, never diff
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.gz binary
+*.xlsx binary
+*.xls binary
+*.docx binary
+*.pptx binary
+*.gpkg binary
+*.parquet binary
+*.twb binary
+*.twbx binary
+
+# CSV — text but no eol enforcement (varies by source)
+*.csv text
