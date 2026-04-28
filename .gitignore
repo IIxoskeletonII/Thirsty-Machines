@@ -1,0 +1,68 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Data — raw downloads excluded by size, processed excluded to
+# force regeneration from notebooks
+data/raw/**/*.csv
+data/raw/**/*.xlsx
+data/raw/**/*.gpkg
+data/raw/**/*.json
+data/processed/**/*.csv
+data/processed/**/*.parquet
+
+# But keep provenance files and the .gitkeep markers
+!data/raw/**/PROVENANCE.md
+!data/**/.gitkeep
+!data/**/README.md
+
+# Tableau
+*.twbr
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.local
