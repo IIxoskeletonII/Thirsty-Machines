@@ -1,7 +1,7 @@
 # Thirsty Machines — Implementation Plan
 
 **Project:** Thirsty Machines
-**Document version:** 1.0 — 29 April 2026
+**Document version:** 1.1 — 29 April 2026
 **Status:** Active. Subject to revision; see revision history at end.
 
 ## 1. Purpose and scope
@@ -33,36 +33,51 @@ The plan is intended to be re-read at the start of each phase. Material deviatio
 
 **Commit boundaries.** One commit at the end of the phase containing only `requirements.txt`. The venv directory and the kernel registration are not committed (the venv is gitignored; the kernel registration lives in the user profile, not in the repo).
 
-### Phase 1 — Data ingestion and cleaning
+### Phase 1 — Data ingestion and validation
 
 **Prerequisites.** Phase 0 complete. Raw data files present locally under `data/raw/<source>/` for all five primary datasets (Jegham, Epoch AI, Ember, IM3 Atlas, Aqueduct). Per-source `PROVENANCE.md` files committed and accurate.
 
-**Deliverables.** A single notebook at `notebooks/01_ingestion.ipynb` that reads each raw file, validates its schema against what the dataset rationale memo documents, applies any per-source preprocessing recorded in the relevant `PROVENANCE.md`, and writes one cleaned tabular file per source to `data/processed/`. A `data/processed/README.md` documenting what is in the directory and how it was produced.
+**Deliverables.** A single notebook at `notebooks/01_ingestion.ipynb` that reads each in-scope raw file, validates its schema against what the dataset rationale memo and the per-source PROVENANCE documents, materialises a faithful schema-validated snapshot of each input to `data/processed/`, and prints a per-file summary of row count, column count, key-column presence, and any documented sentinel values found. A `data/processed/README.md` documenting what is in the directory and how it was produced.
+
+The phase deliberately performs no analytical transformation. Every PROVENANCE file in this project explicitly records "Preprocessing applied at ingestion: none" and defers all join-preparation logic — column-name reconciliation, sentinel handling, the AWS multipliers `skiprows=1` quirk, IM3 layer filtering, operator backfill — to Phase 2. Phase 1's job is to produce a stable, format-normalised, schema-validated snapshot layer that downstream phases can read deterministically without re-validating upstream every time.
+
+This pattern — a faithful snapshot layer beneath a transformation layer beneath an analytical layer — is the standard separation of concerns in modern data pipelines (sometimes called bronze / silver / gold). It buys three things: stability against upstream churn (Ember and Epoch update on rolling schedules; the snapshot freezes the data at the point of ingestion), reproducibility of the final submitted artefact (anyone re-running the notebooks at any later date gets the May 2026 numbers, not whatever upstream happens to publish that week), and performance (CSV-to-parquet conversion at this layer makes downstream reads order-of-magnitude faster).
+
+**In-scope files per source.**
+
+- **Jegham** — five files. Three environmental-footprint files (`DataSnapshotOct26.csv` as the frozen paper-vintage spine, `artificialanalysis_environmental.csv` as the current live snapshot, `Monthly_LLM_Environmental_Footprint.csv` as the time-series view) and two infrastructure-multiplier files (`AWS_Env_Multipliers.csv`, `Microsoft_Env_Multipliers.csv`). The three `artificialanalysis_clean{short,medium,long}.csv` files in the Jegham directory are upstream benchmark inputs to Jegham's environmental model, not project inputs, and are not ingested.
+- **Epoch AI** — one file. `epoch_all_models.csv`.
+- **Ember** — two files. `ember_yearly.csv` and `ember_us_states.csv`.
+- **IM3 Atlas** — one file. `im3_open_source_data_center_atlas_v2026_02_09.csv` (all 1,479 rows; layer filtering happens in Phase 2).
+- **Aqueduct** — one file, two sheets. `Aqueduct40_rankings_download_Y2023M07D05.xlsx`, sheets `country_baseline` and `province_baseline` only. The Read Me, country_future, and province_future sheets are ignored.
+
+Total: ten files read, written out as ten parquet snapshots in `data/processed/`.
 
 **Sequence.**
-1. Create the notebook with a top-level markdown cell stating its purpose, its inputs (the five raw directories), and its outputs (the cleaned files in `data/processed/`).
-2. For each of the five sources, in this order — Jegham, Epoch AI, Ember, IM3 Atlas, Aqueduct — produce a section that loads the raw file, validates that the columns the rationale memo names are present and populated for the rows the project depends on, applies the documented preprocessing (column renames, type coercions, header-row handling, multi-sheet selection where relevant), and writes the cleaned table to `data/processed/<source>.csv` or `.parquet` as appropriate.
-3. Add a final summary cell that prints, for each cleaned table, the row count, column count, and the head of the dataframe — so a reader running the notebook end-to-end can confirm at a glance that all five sources landed correctly.
+1. Create the notebook with a top-level markdown cell stating its purpose, its inputs (the five raw directories), and its outputs (the parquet files in `data/processed/`).
+2. For each of the five sources, in this order — Jegham, Epoch AI, Ember, IM3 Atlas, Aqueduct — produce a section that reads each in-scope raw file with default pandas read settings (no `skiprows`, no column renaming, no type coercion beyond what pandas infers), validates that the columns the rationale memo and the PROVENANCE documents are present, prints a short schema summary (column names, dtypes, row count, presence of any documented sentinel values such as Aqueduct's -9999 for Singapore), and writes the dataframe as parquet to `data/processed/<source>/<filename>.parquet`.
+3. Add a final summary cell that prints, for each materialised snapshot, the source name, the filename, and the row × column shape — so a reader running the notebook end-to-end can confirm at a glance that all ten snapshots landed correctly.
 4. Clear all outputs before the notebook is staged for commit.
 
-**Verification.** The notebook runs top-to-bottom in a fresh kernel without errors. Every cleaned file in `data/processed/` corresponds to one section of the notebook and contains the rows and columns the rationale memo documents. No exploratory dead ends remain in the notebook.
+**Verification.** The notebook runs top-to-bottom in a fresh kernel without errors. Every parquet snapshot in `data/processed/` corresponds to one section of the notebook and contains the rows and columns the PROVENANCE documents. Sentinel values (Aqueduct's -9999 for Singapore, Epoch's missing values in `Training power draw (W)`) are surfaced explicitly in the validation output rather than silently passed through. No exploratory dead ends remain in the notebook. No analytical transformations have been applied — the parquet snapshots are content-faithful to the raw files.
 
-**Commit boundaries.** One commit for the notebook itself. The cleaned files in `data/processed/` are gitignored and regenerated by running the notebook; they are never committed. If the `data/processed/README.md` is added in this phase, it can be in the same commit as the notebook or in a small follow-up commit, depending on which feels cleaner in the diff.
+**Commit boundaries.** One commit for the notebook itself. The parquet snapshots in `data/processed/` are gitignored and regenerated by running the notebook; they are never committed. If the `data/processed/README.md` is added in this phase, it can be in the same commit as the notebook or in a small follow-up commit, depending on which feels cleaner in the diff.
 
 ### Phase 2 — Data integration
 
-**Prerequisites.** Phase 1 complete. Cleaned per-source files exist locally in `data/processed/`. The three join keys identified in the rationale memo (model name for Jegham × Epoch, country name for Ember × Aqueduct, US state name for Ember × IM3 × Aqueduct) are present in the cleaned tables with consistent encoding.
+**Prerequisites.** Phase 1 complete. Schema-validated parquet snapshots exist locally in `data/processed/` for all ten in-scope source files.
 
-**Deliverables.** A notebook at `notebooks/02_integration.ipynb` that reads the cleaned per-source files and produces the joined analytical tables that downstream visualisation work consumes. The integration produces, at minimum: a per-model table joining Jegham per-query metrics to Epoch AI training metadata, and a per-region table joining cloud regions to grid carbon intensity (Ember) and water stress (Aqueduct), with US states resolved at state level and other countries at country level. Joined outputs are written to `data/processed/integrated/`.
+**Deliverables.** A notebook at `notebooks/02_integration.ipynb` that reads the Phase 1 snapshots and produces the joined analytical tables that downstream visualisation work consumes. The integration produces, at minimum: a per-model table joining Jegham per-query metrics to Epoch AI training metadata, and a per-region table joining cloud regions to grid carbon intensity (Ember) and water stress (Aqueduct), with US states resolved at state level and other countries at country level. All transformation logic that the PROVENANCE files defer to integration time is applied here: the AWS multipliers' `skiprows=1` quirk, Ember's column-name reconciliation between yearly and US-state files, IM3's layer-type filtering and operator backfill from the `name` field, Aqueduct's filtering to `indicator_name == "bws"` and `weight == "Tot"`. Joined outputs are written to `data/processed/integrated/`.
 
 **Sequence.**
 1. Create the notebook with the standard top-level cell (purpose, inputs, outputs).
-2. Load the five cleaned tables from `data/processed/`.
-3. Build the model-level join (Jegham × Epoch). Document any model names that fail to match between the two sources and decide explicitly whether to manually reconcile them, fuzzy-match them, or accept the gap. Whatever the choice, document it in a markdown cell.
-4. Build the geographic join. Resolve country names to a canonical form (ISO-3166 alpha-2 or alpha-3 codes are the safest) before joining Ember to Aqueduct. Resolve US state names similarly before joining Ember-US to IM3.
-5. Write the joined tables to `data/processed/integrated/`.
-6. Print summary statistics on each joined table — row counts, join coverage rates, names of any rows that failed to join — so the integration's quality is auditable.
-7. Clear outputs before commit.
+2. Load the Phase 1 parquet snapshots from `data/processed/`.
+3. Apply each PROVENANCE-deferred transformation in a labelled section so a reader can audit which file was transformed how.
+4. Build the model-level join (Jegham × Epoch). Document any model names that fail to match between the two sources and decide explicitly whether to manually reconcile them, fuzzy-match them, or accept the gap. Whatever the choice, document it in a markdown cell.
+5. Build the geographic join. Resolve country names to a canonical form (ISO-3166 alpha-2 or alpha-3 codes are the safest) before joining Ember to Aqueduct. Resolve US state names similarly before joining Ember-US to IM3.
+6. Write the joined tables to `data/processed/integrated/`.
+7. Print summary statistics on each joined table — row counts, join coverage rates, names of any rows that failed to join — so the integration's quality is auditable.
+8. Clear outputs before commit.
 
 **Verification.** The notebook runs top-to-bottom in a fresh kernel without errors. Join coverage is documented and acceptable (specific thresholds depend on what the data shows; the rationale memo's claim that the Virginia / Washington / Arizona triangulation works is the smoke test). Any rows that fail to join are listed explicitly rather than silently dropped.
 
@@ -154,3 +169,4 @@ Four risks are tracked.
 ## 5. Revision history
 
 - **v1.0 — 29 April 2026.** Initial document. Created at the start of the implementation phase, after the project brief, the dataset rationale memo, the data feasibility memo, and the repository standards document were in place, and after professor sign-off on the dataset choices and the static-site deployment approach.
+- **v1.1 — 29 April 2026.** Phase 1 revised after a careful read of the five per-source PROVENANCE files. Phase title changed from "Data ingestion and cleaning" to "Data ingestion and validation" to match what the phase actually does. Phase 1 deliverable, sequence, verification, and in-scope file list rewritten to reflect the bronze/silver/gold pattern: Phase 1 produces faithful schema-validated parquet snapshots of the in-scope raw files with no analytical transformation, deferring all PROVENANCE-documented preprocessing (AWS multipliers `skiprows=1`, Ember column-name reconciliation, IM3 layer filtering and operator backfill, Aqueduct sentinel handling and indicator filtering) to Phase 2. Phase 1 in-scope file list expanded from a vague "each raw file" to an explicit ten-file list across the five sources. Phase 2 sequence updated correspondingly to absorb the deferred transformation work as an explicit early step.
