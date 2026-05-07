@@ -1,0 +1,199 @@
+Model,Query Length,tier,Organization,Mean Combined Energy (Wh),is_unmatched
+Claude 3 Haiku,300,short,Anthropic,0.6196601454601862,False
+Claude 3 Haiku,1000,medium,Anthropic,1.9122335913322452,False
+Claude 3 Haiku,1500,long,Anthropic,2.9172226644811534,False
+Claude 3 Opus,300,short,Anthropic,2.836773960716834,False
+Claude 3 Opus,1000,medium,Anthropic,9.406704442156222,False
+Claude 3 Opus,1500,long,Anthropic,14.271282472099577,False
+Claude 3.5 Haiku,300,short,Anthropic,0.9745815199839308,False
+Claude 3.5 Haiku,1000,medium,Anthropic,4.464323617209618,False
+Claude 3.5 Haiku,1500,long,Anthropic,8.010319609469473,False
+Claude 3.5 Sonnet (Oct),300,short,Anthropic,0.9726460850797448,False
+Claude 3.5 Sonnet (Oct),1000,medium,Anthropic,3.637819823937022,False
+Claude 3.5 Sonnet (Oct),1500,long,Anthropic,7.771587015310507,False
+Claude 3.7 Sonnet,300,short,Anthropic,0.950276007085052,False
+Claude 3.7 Sonnet,1000,medium,Anthropic,2.9886172728329727,False
+Claude 3.7 Sonnet,1500,long,Anthropic,5.671361748624589,False
+Claude 4 Opus,300,short,Anthropic,1.3107267863874503,False
+Claude 4 Opus,1000,medium,Anthropic,5.129127372068877,False
+Claude 4 Opus,1500,long,Anthropic,11.158905001508062,False
+Claude 4 Sonnet,300,short,Anthropic,1.44732407476011,False
+Claude 4 Sonnet,1000,medium,Anthropic,4.558069886186528,False
+Claude 4 Sonnet,1500,long,Anthropic,7.877202572991916,False
+DeepSeek R1 (Azure),300,short,DeepSeek,2.3525858766500254,False
+DeepSeek R1 (Azure),1000,medium,DeepSeek,4.330762673879813,False
+DeepSeek R1 (Azure),1500,long,DeepSeek,7.410170598811359,False
+DeepSeek R1 (DeepSeek) [128k],300,short,DeepSeek,19.250694828027115,False
+DeepSeek R1 (DeepSeek) [128k],1000,medium,DeepSeek,24.595769199142456,False
+DeepSeek R1 (DeepSeek) [128k],1500,long,DeepSeek,29.078235636566216,False
+DeepSeek V3 (Azure),300,short,DeepSeek,0.7420862779602099,False
+DeepSeek V3 (Azure),1000,medium,DeepSeek,2.165077580680944,False
+DeepSeek V3 (Azure),1500,long,DeepSeek,3.696037367979706,False
+DeepSeek V3 (DeepSeek),300,short,DeepSeek,2.777252262188403,False
+DeepSeek V3 (DeepSeek),1000,medium,DeepSeek,8.864250955030597,False
+DeepSeek V3 (DeepSeek),1500,long,DeepSeek,13.162141320048509,False
+GPT-3.5 Turbo,300,short,OpenAI,0.7874919813215606,False
+GPT-3.5 Turbo,1000,medium,OpenAI,2.647275125717008,False
+GPT-3.5 Turbo,1500,long,OpenAI,,True
+GPT-4,300,short,OpenAI,1.796672730735369,False
+GPT-4,1000,medium,OpenAI,6.924622820398327,False
+GPT-4,1500,long,OpenAI,,True
+GPT-4 Turbo,300,short,OpenAI,1.6994156393146682,False
+GPT-4 Turbo,1000,medium,OpenAI,5.940004476854617,False
+GPT-4 Turbo,1500,long,OpenAI,9.87651038051871,False
+GPT-4.1,300,short,OpenAI,0.8714495411389016,False
+GPT-4.1,1000,medium,OpenAI,3.1612557746369947,False
+GPT-4.1,1500,long,OpenAI,4.833167831397015,False
+GPT-4.1 mini,300,short,OpenAI,0.4504593006519046,False
+GPT-4.1 mini,1000,medium,OpenAI,1.5447253053151355,False
+GPT-4.1 mini,1500,long,OpenAI,2.121919700569846,False
+GPT-4.1 nano,300,short,OpenAI,0.2070106815724504,False
+GPT-4.1 nano,1000,medium,OpenAI,0.5748442941561653,False
+GPT-4.1 nano,1500,long,OpenAI,0.8269641768936487,False
+GPT-4o (Aug),300,short,OpenAI,0.41865422632724,False
+GPT-4o (Aug),1000,medium,OpenAI,1.3541448845606838,False
+GPT-4o (Aug),1500,long,OpenAI,2.2214537874564177,False
+GPT-4o (ChatGPT),300,short,OpenAI,0.4528786776047934,False
+GPT-4o (ChatGPT),1000,medium,OpenAI,1.2522627708723035,False
+GPT-4o (ChatGPT),1500,long,OpenAI,2.6986499077925274,False
+GPT-4o (Mar),300,short,OpenAI,0.4131595480134974,False
+GPT-4o (Mar),1000,medium,OpenAI,1.301379923303993,False
+GPT-4o (Mar),1500,long,OpenAI,2.874698430170669,False
+GPT-4o (May),300,short,OpenAI,0.6426739027053733,False
+GPT-4o (May),1000,medium,OpenAI,2.5884746409673567,False
+GPT-4o (May),1500,long,OpenAI,5.481177700681429,False
+GPT-4o (Nov),300,short,OpenAI,0.4879194663972967,False
+GPT-4o (Nov),1000,medium,OpenAI,1.686538487236389,False
+GPT-4o (Nov),1500,long,OpenAI,3.0092937927064822,False
+GPT-4o mini,300,short,OpenAI,0.5769990171220006,False
+GPT-4o mini,1000,medium,OpenAI,1.897349861859761,False
+GPT-4o mini,1500,long,OpenAI,3.098254741466083,False
+GPT-5 (high),300,short,OpenAI,13.682461529260229,False
+GPT-5 (high),1000,medium,OpenAI,16.451551397964096,False
+GPT-5 (high),1500,long,OpenAI,25.595794854876875,False
+GPT-5 (low),300,short,OpenAI,1.9681666608221693,False
+GPT-5 (low),1000,medium,OpenAI,6.476514309117289,False
+GPT-5 (low),1500,long,OpenAI,6.650824367502828,False
+GPT-5 (medium),300,short,OpenAI,5.338431268541947,False
+GPT-5 (medium),1000,medium,OpenAI,10.96343403805456,False
+GPT-5 (medium),1500,long,OpenAI,14.00206714869239,False
+GPT-5 (minimal),300,short,OpenAI,0.7893588751926263,False
+GPT-5 (minimal),1000,medium,OpenAI,2.102736250241539,False
+GPT-5 (minimal),1500,long,OpenAI,6.383128686707559,False
+GPT-5 mini (high),300,short,OpenAI,6.698190749208036,False
+GPT-5 mini (high),1000,medium,OpenAI,14.169088596692822,False
+GPT-5 mini (high),1500,long,OpenAI,13.81307258054485,False
+GPT-5 mini (medium),300,short,OpenAI,2.339874088147485,False
+GPT-5 mini (medium),1000,medium,OpenAI,5.819884280508792,False
+GPT-5 mini (medium),1500,long,OpenAI,5.55640723938765,False
+GPT-5 mini (minimal),300,short,OpenAI,0.5531319956016327,False
+GPT-5 mini (minimal),1000,medium,OpenAI,1.9356774406273691,False
+GPT-5 mini (minimal),1500,long,OpenAI,3.169122449002399,False
+GPT-5 nano (high),300,short,OpenAI,3.126350533427594,False
+GPT-5 nano (high),1000,medium,OpenAI,8.552299856636548,False
+GPT-5 nano (high),1500,long,OpenAI,8.94265042075995,False
+GPT-5 nano (medium),300,short,OpenAI,1.449702933549576,False
+GPT-5 nano (medium),1000,medium,OpenAI,3.40953054008144,False
+GPT-5 nano (medium),1500,long,OpenAI,4.138052965567184,False
+GPT-5 nano (minimal),300,short,OpenAI,0.2098988943412379,False
+GPT-5 nano (minimal),1000,medium,OpenAI,0.4730530593051387,False
+GPT-5 nano (minimal),1500,long,OpenAI,0.6787697519699873,False
+Gemini 2.5 Flash (Vertex),300,short,Google,0.6396631691684548,False
+Gemini 2.5 Flash (Vertex),1000,medium,Google,1.3900949751131166,False
+Gemini 2.5 Flash (Vertex),1500,long,Google,1.7748651675048115,False
+Gemini 2.5 Pro (AI Studio),300,short,Google,1.8973728237732832,False
+Gemini 2.5 Pro (AI Studio),1000,medium,Google,2.6915728692978136,False
+Gemini 2.5 Pro (AI Studio),1500,long,Google,4.1625034022181655,False
+Gemini 2.5 Pro Vertex,300,short,Google,2.28419326588934,False
+Gemini 2.5 Pro Vertex,1000,medium,Google,3.35483338162154,False
+Gemini 2.5 Pro Vertex,1500,long,Google,4.2367300141307584,False
+Grok 3 Fast,300,short,xAI,2.4708692895480406,False
+Grok 3 Fast,1000,medium,xAI,9.34042199132573,False
+Grok 3 Fast,1500,long,xAI,13.471830646688076,False
+Grok 3 mini Reasoning (high),300,short,xAI,0.600492644163008,False
+Grok 3 mini Reasoning (high),1000,medium,xAI,1.7488826093426382,False
+Grok 3 mini Reasoning (high),1500,long,xAI,2.605934191934503,False
+Grok 3 mini Reasoning (high) Fast,300,short,xAI,0.5900957724294811,False
+Grok 3 mini Reasoning (high) Fast,1000,medium,xAI,1.7453708763203122,False
+Grok 3 mini Reasoning (high) Fast,1500,long,xAI,2.674219451788176,False
+Grok 4,300,short,xAI,6.249267791967713,False
+Grok 4,1000,medium,xAI,11.642641403691664,False
+Grok 4,1500,long,xAI,17.64270425861727,False
+Llama 3 70B,300,short,Meta,0.8609481204687002,False
+Llama 3 70B,1000,medium,Meta,2.870899279173788,False
+Llama 3 70B,1500,long,Meta,,True
+Llama 3 8B,300,short,Meta,0.108432054902151,False
+Llama 3 8B,1000,medium,Meta,0.3702252915492596,False
+Llama 3 8B,1500,long,Meta,,True
+Llama 3.1 405B Latency Optimized,300,short,Meta,0.7449052753645076,False
+Llama 3.1 405B Latency Optimized,1000,medium,Meta,3.0189141738503777,False
+Llama 3.1 405B Latency Optimized,1500,long,Meta,6.856324576057361,False
+Llama 3.1 405B Standard,300,short,Meta,2.225921457260688,False
+Llama 3.1 405B Standard,1000,medium,Meta,9.042499255370393,False
+Llama 3.1 405B Standard,1500,long,Meta,25.20171891021811,False
+Llama 3.1 70B Latency Optimized,300,short,Meta,0.2431547321036454,False
+Llama 3.1 70B Latency Optimized,1000,medium,Meta,0.9449132573687092,False
+Llama 3.1 70B Latency Optimized,1500,long,Meta,2.2625554782030117,False
+Llama 3.1 70B Standard,300,short,Meta,1.2712435325688969,False
+Llama 3.1 70B Standard,1000,medium,Meta,4.52461076680846,False
+Llama 3.1 70B Standard,1500,long,Meta,19.182958917875595,False
+Llama 3.1 8B,300,short,Meta,0.0516705107827739,False
+Llama 3.1 8B,1000,medium,Meta,0.1723407651241004,False
+Llama 3.1 8B,1500,long,Meta,0.4430452862834718,False
+Llama 3.2 11B (Vision),300,short,Meta,0.0780379342530792,False
+Llama 3.2 11B (Vision),1000,medium,Meta,0.2424156306062787,False
+Llama 3.2 11B (Vision),1500,long,Meta,1.0866562486114923,False
+Llama 3.2 1B,300,short,Meta,0.1091441766023734,False
+Llama 3.2 1B,1000,medium,Meta,0.3416356530992706,False
+Llama 3.2 1B,1500,long,Meta,0.5516386610406485,False
+Llama 3.2 3B,300,short,Meta,0.1430392665482454,False
+Llama 3.2 3B,1000,medium,Meta,0.4785990814214654,False
+Llama 3.2 3B,1500,long,Meta,0.7067753984251616,False
+Llama 3.2 90B (Vision),300,short,Meta,1.2349390218857952,False
+Llama 3.2 90B (Vision),1000,medium,Meta,4.534093748440434,False
+Llama 3.2 90B (Vision),1500,long,Meta,6.852134510621108,False
+Llama 3.3 70B,300,short,Meta,0.2369516163982321,False
+Llama 3.3 70B,1000,medium,Meta,0.7596311235209062,False
+Llama 3.3 70B,1500,long,Meta,1.4471097702111486,False
+Llama 4 Maverick,300,short,Meta,0.0474549501487129,False
+Llama 4 Maverick,1000,medium,Meta,0.1609056328216782,False
+Llama 4 Maverick,1500,long,Meta,0.2714339741881528,False
+Llama 4 Scout,300,short,Meta,0.049645459489079,False
+Llama 4 Scout,1000,medium,Meta,0.1641677515041448,False
+Llama 4 Scout,1500,long,Meta,0.3780548506487936,False
+Mistral Large 2 (AWS),300,short,Mistral AI,2.1923769714106185,False
+Mistral Large 2 (AWS),1000,medium,Mistral AI,8.080295970830806,False
+Mistral Large 2 (AWS),1500,long,Mistral AI,12.04129866815502,False
+Mistral Large 2 (Azure),300,short,Mistral AI,1.6080074850178696,False
+Mistral Large 2 (Azure),1000,medium,Mistral AI,5.42108522936212,False
+Mistral Large 2 (Azure),1500,long,Mistral AI,9.025191325375872,False
+Mistral Medium 3,300,short,Mistral AI,1.3969270348309015,False
+Mistral Medium 3,1000,medium,Mistral AI,4.437499268225327,False
+Mistral Medium 3,1500,long,Mistral AI,7.052813545981275,False
+Mistral NeMo,300,short,Mistral AI,0.1880812807636925,False
+Mistral NeMo,1000,medium,Mistral AI,0.6220763737149814,False
+Mistral NeMo,1500,long,Mistral AI,0.9651610465769832,False
+Mistral Small (Feb),300,short,Mistral AI,0.261081368141207,False
+Mistral Small (Feb),1000,medium,Mistral AI,0.8387754322551415,False
+Mistral Small (Feb),1500,long,Mistral AI,1.3645951776506828,False
+o1,300,short,OpenAI,2.2678340419116165,False
+o1,1000,medium,OpenAI,4.046685894756472,False
+o1,1500,long,OpenAI,6.180693592631311,False
+o1-mini,300,short,OpenAI,0.5350462706569497,False
+o1-mini,1000,medium,OpenAI,1.5472905639755985,False
+o1-mini,1500,long,OpenAI,2.3168102412638034,False
+o3,300,short,OpenAI,1.177235486417352,False
+o3,1000,medium,OpenAI,5.153462463166739,False
+o3,1500,long,OpenAI,12.222138265521709,False
+o3-mini,300,short,OpenAI,0.6743608218574909,False
+o3-mini,1000,medium,OpenAI,2.4233046711435486,False
+o3-mini,1500,long,OpenAI,3.524732297037093,False
+o3-mini (high),300,short,OpenAI,3.0115809984354933,False
+o3-mini (high),1000,medium,OpenAI,6.864576519183404,False
+o3-mini (high),1500,long,OpenAI,5.38938602184467,False
+o3-pro,300,short,OpenAI,15.955370609058397,False
+o3-pro,1000,medium,OpenAI,40.92591714185654,False
+o3-pro,1500,long,OpenAI,49.93231226190828,False
+o4-mini (high),300,short,OpenAI,3.648854142475545,False
+o4-mini (high),1000,medium,OpenAI,7.380117531030016,False
+o4-mini (high),1500,long,OpenAI,7.237426317578311,False

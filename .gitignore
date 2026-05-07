@@ -50,6 +50,7 @@ data/raw/**/*.xlsx
 data/raw/**/*.gpkg
 data/raw/**/*.json
 data/processed/**/*.csv
+!data/processed/tableau/*.csv
 data/processed/**/*.parquet
 
 # But keep provenance files and the .gitkeep markers

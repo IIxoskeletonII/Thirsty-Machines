@@ -1,0 +1,38 @@
+provider,region_name,iso3,state_abb,wue_site,cif_site,wue_source,cif_source,grid_carbon_intensity_gco2_kwh,water_stress_score,us_facility_count_in_state,us_facility_sqft_total_in_state
+AWS,Canada (Central) (Ontario),CAN,,8.18,0.11,24.54,0.33,190.72,1.233315456,,
+AWS,US East (Northern Virginia),USA,VA,2.27,0.39,13.62,2.34,327.17,2.562448902,31.0,56960153.0
+AWS,US East (Ohio),USA,OH,2.27,0.39,6.81,1.17,479.05,1.561858114,10.0,86629236.0
+AWS,US West (Oregon),USA,OR,9.49,0.27,37.96,1.08,184.02,1.603367247,6.0,35997102.0
+AWS,South America (São Paulo),BRA,,18.57,0.08,55.71,0.24,109.95,1.037909741,,
+AWS,Europe (Frankfurt),DEU,,1.93,0.28,5.79,0.84,329.65,2.041904513,,
+AWS,Europe (Ireland),IRL,,1.48,0.27,4.44,0.81,256.54,0.363338153,,
+AWS,Europe (London),GBR,,2.35,0.14,7.05,0.42,217.41,1.298003739,,
+AWS,Middle East (UAE),ARE,,1.29,0.33,3.87,0.99,467.51,4.999991212,,
+AWS,Australia (Sydney),AUS,,4.73,0.52,14.19,1.56,525.18,2.906718433,,
+Azure,Australia East,AUS,,4.7317625,0.528,,,525.18,2.906718433,,
+Azure,Brazil South,BRA,,18.58435,0.084,,,109.95,1.037909741,,
+Azure,Canada Central,CAN,,8.18,0.129,,,190.72,1.233315456,,
+Azure,Central India,IND,,3.44,0.619,,,670.13,4.107794474,,
+Azure,East Asia,HKG,,6.02,0.589,,,675.48,,,
+Azure,East US (PJM),USA,VA,2.27,0.389,,,327.17,2.562448902,31.0,56960153.0
+Azure,East US 2 (PJM),USA,VA,2.27,0.389,,,327.17,2.562448902,31.0,56960153.0
+Azure,France Central,FRA,,3.67,0.019,,,41.44,1.916452159,,
+Azure,Germany West Central,DEU,,1.93,0.283,,,329.65,2.041904513,,
+Azure,Italy North,ITA,,4.85,0.264,,,284.78,3.344018796,,
+Azure,Japan East,JPN,,2.31,0.573,,,477.26,1.967749978,,
+Azure,Korea Central,KOR,,1.89,0.47,,,417.06,2.381249355,,
+Azure,North Central US (MISO),USA,IL,2.53,0.52,,,222.41,2.402912456,2.0,14898565.0
+Azure,North Europe,IRL,,1.48,0.286,,,256.54,0.363338153,,
+Azure,Qatar Central,QAT,,1.29,0.49,,,581.52,5.0,,
+Azure,South Africa North,ZAF,,10.5,0.713,,,699.29,4.167753556,,
+Azure,South Central US (ERCOT),USA,TX,1.29,0.397,,,342.52,3.329698739,10.0,21323769.0
+Azure,South East Asia,SGP,,1.67,0.482,,,497.09,,,
+Azure,South India,IND,,3.44,0.475,,,670.13,4.107794474,,
+Azure,Spain Central,ESP,,6.21,0.128,,,153.6,3.940242667,,
+Azure,Sweden Central,SWE,,6.02,0.015,,,35.26,0.781293393,,
+Azure,Switzerland North,CHE,,5.68,0.034,,,39.22,0.405618449,,
+Azure,UAE North,ARE,,1.29,0.332,,,467.51,4.999991212,,
+Azure,UK South,GBR,,2.35,0.153,,,217.41,1.298003739,,
+Azure,West Europe,NLD,,3.44,0.208,,,253.56,1.581120297,,
+Azure,West US (CISO),USA,CA,5.19,0.224,,,177.11,4.025594624,3.0,182348.0
+Azure,West US 3 (APS),USA,AZ,4.96,0.421,,,282.98,4.392122413,8.0,33961601.0

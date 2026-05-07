@@ -1,0 +1,6 @@
+source,target,value,unit,flow_label
+1 query,GPT-4o (Aug) inference,2.2215,Wh,Per-query energy
+GPT-4o (Aug) inference,AWS US East (Virginia),2.2215,Wh,Routed to region
+AWS US East (Virginia),Virginia grid,2.2215,Wh,Drawn from grid
+Virginia grid,Derived emissions,0.7268,gCO2e,× 327.17 gCO2/kWh ÷ 1000
+Derived emissions,End,0.7268,gCO2e,"Net atmospheric carbon (vs Jegham 0.7553, -3.8%)"
