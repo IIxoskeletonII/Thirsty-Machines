@@ -12,7 +12,10 @@ Built for the Data Visualisation 2026 course at LUISS Guido Carli, MSc Data Scie
 
 ## Tableau dashboards
 
-[links to be added once published]
+- [Training compute trajectory](https://public.tableau.com/views/ThirstyMachinesTrainingcomputetrajectory/Trainingcomputetrajectory) — frontier AI models with disclosed training compute, plotted by publication date and FLOP.
+- [Cloud region map](https://public.tableau.com/app/profile/eliya.allam/viz/ThirstyMachinesCloudregionmap/Cloudregionmap) — 37 AWS and Azure cloud regions with grid carbon intensity and water-stress overlays.
+
+Components 2, 5, 6, and 8 will be added as they are published.
 
 ## Repository structure
 
