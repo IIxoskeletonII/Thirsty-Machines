@@ -43,9 +43,16 @@ used by the static site under `web/`.
 
 ## Component 5 — Aggregate scaling
 
-- Workbook file: `aggregate_scaling.twb` (planned filename)
+- Workbook file: `aggregate_scaling.twb`
 - Tableau Public title: Thirsty Machines — Aggregate scaling
-- Status: Pending
+- Status: Published
+- URL: https://public.tableau.com/views/ThirstyMachinesAggregatescaling/AggregateScaling
+- Sizing note: this dashboard uses a fixed 1650×1000 size (rendered as 1650×1027 with the Tableau Public toolbar) rather than the Range sizing the other dashboards use, because the 3×3 cell grid's text-mark content needs a guaranteed render width that Range sizing cannot enforce on Tableau Public's default viewer.
+- Embed code:
+
+```html
+<div class='tableauPlaceholder' id='viz1778343214325' style='position: relative'><noscript><a href='#'><img alt='Aggregate Scaling ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Th&#47;ThirstyMachinesAggregatescaling&#47;AggregateScaling&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='ThirstyMachinesAggregatescaling&#47;AggregateScaling' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Th&#47;ThirstyMachinesAggregatescaling&#47;AggregateScaling&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1778343214325');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1650px';vizElement.style.height='1027px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1650px';vizElement.style.height='1027px';} else { vizElement.style.width='100%';vizElement.style.height='727px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+```
 
 ## Component 6 — Efficiency vs query length
 

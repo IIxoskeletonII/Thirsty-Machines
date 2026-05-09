@@ -15,8 +15,9 @@ Built for the Data Visualisation 2026 course at LUISS Guido Carli, MSc Data Scie
 - [Training compute trajectory](https://public.tableau.com/views/ThirstyMachinesTrainingcomputetrajectory/Trainingcomputetrajectory) — frontier AI models with disclosed training compute, plotted by publication date and FLOP.
 - [Cloud region map](https://public.tableau.com/app/profile/eliya.allam/viz/ThirstyMachinesCloudregionmap/Cloudregionmap) — 37 AWS and Azure cloud regions with grid carbon intensity and water-stress overlays.
 - [Model energy ranking](https://public.tableau.com/shared/Q884JPRJ3) — 66 LLM models ranked by per-query energy across short, medium, and long prompts.
+- [Aggregate scaling](https://public.tableau.com/views/ThirstyMachinesAggregatescaling/AggregateScaling) — per-query energy, water, and carbon scaled to 1B / 50B / 100B prompts with everyday equivalences.
 
-Components 5, 6, and 8 will be added as they are published.
+Components 6 and 8 will be added as they are published.
 
 ## Repository structure
 
