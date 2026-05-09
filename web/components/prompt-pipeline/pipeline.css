@@ -1,0 +1,616 @@
+:root {
+  /* Wong / Okabe-Ito palette — organisations */
+  --color-anthropic: #56b4e9;
+  --color-deepseek: #cc79a7;
+  --color-meta: #0072b2;
+  --color-mistral: #d55e00;
+  --color-openai: #e69f00;
+
+  /* Semantic — visualisation metrics */
+  --color-energy: #0072b2;
+  --color-water: #56b4e9;
+  --color-carbon: #d55e00;
+
+  /* Surfaces and text */
+  --color-bg: #fafafa;
+  --color-surface: #ffffff;
+  --color-border: #e0e0e0;
+  --color-text: #1a1a1a;
+  --color-text-muted: #666666;
+
+  --font-family:
+    -apple-system, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-pill: 999px;
+
+  --gap-xs: 6px;
+  --gap-sm: 10px;
+  --gap-md: 16px;
+  --gap-lg: 24px;
+  --gap-xl: 32px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------- layout ---------- */
+
+.pipeline {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--gap-xl) var(--gap-lg);
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: var(--gap-lg);
+  min-height: 100vh;
+}
+
+/* ---------- header ---------- */
+
+.pipeline__header {
+  text-align: left;
+}
+
+.pipeline__title {
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 6px;
+  color: var(--color-text);
+}
+
+.pipeline__subtitle {
+  font-size: 16px;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* ---------- controls ---------- */
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-md);
+}
+
+.controls__group {
+  border: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--gap-md);
+  flex-wrap: wrap;
+}
+
+.controls__legend {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  letter-spacing: 0.02em;
+  padding: 0;
+  margin-right: 4px;
+  min-width: 56px;
+}
+
+.controls__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-sm);
+}
+
+.controls__bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-md);
+  flex-wrap: wrap;
+}
+
+/* ---------- buttons ---------- */
+
+.btn {
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  padding: 8px 16px;
+  transition:
+    background-color 120ms ease,
+    color 120ms ease,
+    border-color 120ms ease;
+}
+
+.btn--pill {
+  border-radius: var(--radius-pill);
+}
+
+.btn:hover {
+  background: #f0f0f0;
+}
+
+.btn.is-selected {
+  background: var(--color-text);
+  color: var(--color-surface);
+  border-color: var(--color-text);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-energy);
+  outline-offset: 2px;
+}
+
+.btn__swatch {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+  background: var(--color-border);
+}
+
+.btn--model[data-org="meta"] .btn__swatch {
+  background: var(--color-meta);
+}
+.btn--model[data-org="openai"] .btn__swatch {
+  background: var(--color-openai);
+}
+.btn--model[data-org="anthropic"] .btn__swatch {
+  background: var(--color-anthropic);
+}
+.btn--model[data-org="deepseek"] .btn__swatch {
+  background: var(--color-deepseek);
+}
+.btn--model[data-org="mistral"] .btn__swatch {
+  background: var(--color-mistral);
+}
+
+.btn--send {
+  background: var(--color-energy);
+  color: var(--color-surface);
+  border-color: var(--color-energy);
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+}
+
+.btn--send:hover {
+  background: #005a8e;
+  border-color: #005a8e;
+}
+
+.btn--send:focus-visible {
+  outline-color: var(--color-text);
+}
+
+.btn__icon {
+  font-size: 12px;
+  line-height: 1;
+}
+
+/* ---------- visualization row ---------- */
+
+.visualization {
+  display: grid;
+  grid-template-columns: minmax(220px, 260px) 1fr minmax(240px, 300px);
+  gap: var(--gap-lg);
+  align-items: start;
+}
+
+.viz-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+}
+
+.viz-column--phone {
+  align-items: center;
+}
+
+.viz-column__caption {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  margin: 4px 0 0;
+}
+
+/* ---------- phone ---------- */
+
+.phone {
+  width: 220px;
+  height: 360px;
+  background: var(--color-text);
+  border-radius: 28px;
+  padding: 14px;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.08),
+    0 1px 4px rgba(0, 0, 0, 0.04);
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  position: relative;
+}
+
+.phone__status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 24px;
+  padding: 0 4px;
+  margin: -2px 0 8px;
+  font-size: 12.5px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: #374151;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.phone__status-time {
+  letter-spacing: 0.01em;
+}
+
+.phone__status-icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.phone__icon {
+  display: block;
+}
+
+.phone::before {
+  /* speaker / notch */
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 56px;
+  height: 4px;
+  background: #2b2b2b;
+  border-radius: 2px;
+}
+
+.phone__screen {
+  flex: 1;
+  background: #f5f5f5;
+  border-radius: 18px;
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.phone__input {
+  flex: 1;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  resize: none;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--color-text);
+  cursor: default;
+}
+
+.phone__input:focus {
+  outline: none;
+}
+
+.phone__input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.phone__caret {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  width: 2px;
+  height: 16px;
+  background: var(--color-energy);
+  animation: phoneBlink 1100ms steps(2, jump-none) infinite;
+}
+
+@keyframes phoneBlink {
+  to {
+    opacity: 0;
+  }
+}
+
+/* ---------- pipeline svg ---------- */
+
+.viz-column--pipeline {
+  align-self: stretch;
+  justify-content: center;
+}
+
+.pipeline-svg {
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  display: block;
+}
+
+.pipeline-track {
+  fill: none;
+  stroke: #d1d5db;
+  stroke-width: 2.5;
+  stroke-dasharray: 4 4;
+}
+
+.pipeline-stage {
+  fill: #f9fafb;
+  stroke: #9ca3af;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.pipeline-stage text {
+  fill: #6b7280;
+  stroke: none;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: inherit;
+  text-anchor: middle;
+}
+
+.pipeline-stage__led {
+  fill: var(--color-carbon);
+  stroke: none;
+}
+
+/* ---------- counter cards ---------- */
+
+.viz-column--counters {
+  gap: var(--gap-md);
+}
+
+.counter {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+}
+
+.counter__icon {
+  font-size: 24px;
+  line-height: 1;
+  flex: 0 0 auto;
+  margin-top: 2px;
+}
+
+.counter__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.counter__label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.counter__value {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin: 0;
+  line-height: 1;
+}
+
+.counter__number {
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text);
+}
+
+.counter__unit {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.counter__equiv {
+  font-size: 12.5px;
+  color: var(--color-text-muted);
+  margin: 2px 0 0;
+}
+
+.counter[data-metric="energy"] .counter__icon {
+  color: var(--color-energy);
+}
+.counter[data-metric="water"] .counter__icon {
+  color: var(--color-water);
+}
+.counter[data-metric="carbon"] .counter__icon {
+  color: var(--color-carbon);
+}
+
+/* ---------- insight ---------- */
+
+.insight {
+  font-size: 15px;
+  font-style: italic;
+  color: var(--color-text-muted);
+  margin: 0;
+  padding: var(--gap-md) 0 0;
+  border-top: 1px solid var(--color-border);
+  text-align: left;
+  max-width: 75ch;
+  /* Pretty is broadly supported; balance is the better choice for short
+     paragraphs but not yet universal. Fall back gracefully. */
+  text-wrap: pretty;
+  text-wrap: balance;
+}
+
+.insight::before {
+  content: "→ ";
+  font-style: normal;
+  color: var(--color-text-muted);
+}
+
+/* ---------- accessibility ---------- */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 900px) {
+  .visualization {
+    grid-template-columns: 1fr;
+  }
+
+  .viz-column--phone,
+  .viz-column--pipeline,
+  .viz-column--counters {
+    align-self: stretch;
+  }
+
+  .viz-column--counters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--gap-md);
+  }
+
+  .pipeline-svg {
+    min-height: 200px;
+  }
+}
+
+@media (max-width: 600px) {
+  .pipeline {
+    padding: var(--gap-lg) var(--gap-md);
+    gap: var(--gap-md);
+  }
+
+  .pipeline__title {
+    font-size: 24px;
+  }
+
+  .controls__bottom-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn--send {
+    align-self: stretch;
+    justify-content: center;
+  }
+
+  .counter__number {
+    font-size: 36px;
+  }
+
+  .phone {
+    width: 200px;
+    height: 320px;
+  }
+}
+
+/* ---------- reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .phone__caret {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* ---------- step 4: animation ---------- */
+
+/* Stage stroke transitions when .is-active is toggled. The data centre's
+   LED is excluded so its orange fill stays the only colour spot. */
+.pipeline-stage path,
+.pipeline-stage line,
+.pipeline-stage rect,
+.pipeline-stage > circle:not(.pipeline-stage__led) {
+  transition: stroke 200ms ease;
+}
+
+.pipeline-stage.is-active path,
+.pipeline-stage.is-active line,
+.pipeline-stage.is-active rect,
+.pipeline-stage.is-active > circle:not(.pipeline-stage__led) {
+  stroke: var(--color-text);
+}
+
+/* Travelling particle: subtle stroke for visual depth on light backgrounds. */
+.particle {
+  stroke: rgba(0, 0, 0, 0.12);
+  stroke-width: 1;
+}
+
+/* Phone receive flash. Inset box-shadow keeps the screen layout pinned
+   (a real border would shift the textarea by 2px on each toggle). */
+.phone__screen {
+  box-shadow: inset 0 0 0 0 transparent;
+  transition: box-shadow 250ms ease;
+}
+
+.phone__screen.is-receiving {
+  box-shadow: inset 0 0 0 2px var(--color-energy);
+}
+
+/* Disabled state during animation: visual cue beyond the browser default. */
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}

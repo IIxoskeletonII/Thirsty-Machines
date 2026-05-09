@@ -1,0 +1,171 @@
+{
+  "models": {
+    "Llama 3.1 8B": {
+      "organization": "Meta",
+      "host": "AWS",
+      "speedTier": "fast",
+      "tokensPerSecond": 150,
+      "short": {
+        "energy_wh": 0.0517,
+        "water_ml": 0.2727,
+        "carbon_g": 0.0155
+      },
+      "medium": {
+        "energy_wh": 0.1723,
+        "water_ml": 0.9096,
+        "carbon_g": 0.0517
+      },
+      "long": {
+        "energy_wh": 0.443,
+        "water_ml": 2.3383,
+        "carbon_g": 0.1329
+      },
+      "insight": "Open-weight 8B model — roughly 1/30th the energy of frontier reasoning models for the same prompt."
+    },
+    "GPT-4o (Aug)": {
+      "organization": "OpenAI",
+      "host": "Azure",
+      "speedTier": "medium",
+      "tokensPerSecond": 80,
+      "short": {
+        "energy_wh": 0.4187,
+        "water_ml": 1.9333,
+        "carbon_g": 0.1423
+      },
+      "medium": {
+        "energy_wh": 1.3541,
+        "water_ml": 6.2532,
+        "carbon_g": 0.4604
+      },
+      "long": {
+        "energy_wh": 2.2215,
+        "water_ml": 10.2584,
+        "carbon_g": 0.7553
+      },
+      "insight": "OpenAI's August 2024 mid-tier production model — typical per-query cost for everyday consumer prompts."
+    },
+    "Claude 3.7 Sonnet": {
+      "organization": "Anthropic",
+      "host": "Anthropic",
+      "speedTier": "medium",
+      "tokensPerSecond": 60,
+      "short": {
+        "energy_wh": 0.9503,
+        "water_ml": 5.0155,
+        "carbon_g": 0.2851
+      },
+      "medium": {
+        "energy_wh": 2.9886,
+        "water_ml": 15.7736,
+        "carbon_g": 0.8966
+      },
+      "long": {
+        "energy_wh": 5.6714,
+        "water_ml": 29.9329,
+        "carbon_g": 1.7014
+      },
+      "insight": "Anthropic's mid-tier production model — comparable energy profile to GPT-4o but slightly higher water and carbon footprint."
+    },
+    "GPT-5 (minimal)": {
+      "organization": "OpenAI",
+      "host": "Azure",
+      "speedTier": "medium",
+      "tokensPerSecond": 70,
+      "short": {
+        "energy_wh": 0.7894,
+        "water_ml": 3.6451,
+        "carbon_g": 0.2684
+      },
+      "medium": {
+        "energy_wh": 2.1027,
+        "water_ml": 9.7101,
+        "carbon_g": 0.7149
+      },
+      "long": {
+        "energy_wh": 6.3831,
+        "water_ml": 29.4764,
+        "carbon_g": 2.1703
+      },
+      "insight": "GPT-5 with the lowest reasoning effort tier — most efficient setting on the same model weights."
+    },
+    "GPT-5 (high)": {
+      "organization": "OpenAI",
+      "host": "Azure",
+      "speedTier": "slow",
+      "tokensPerSecond": 40,
+      "short": {
+        "energy_wh": 13.6825,
+        "water_ml": 63.1837,
+        "carbon_g": 4.652
+      },
+      "medium": {
+        "energy_wh": 16.4516,
+        "water_ml": 75.9709,
+        "carbon_g": 5.5935
+      },
+      "long": {
+        "energy_wh": 25.5958,
+        "water_ml": 118.1977,
+        "carbon_g": 8.7026
+      },
+      "insight": "GPT-5's high reasoning tier — about 6× more energy than the same model on minimal effort, almost entirely from extended chain-of-thought generation."
+    },
+    "DeepSeek R1 (DeepSeek) [128k]": {
+      "organization": "DeepSeek",
+      "host": "DeepSeek",
+      "speedTier": "slow",
+      "tokensPerSecond": 30,
+      "short": {
+        "energy_wh": 19.2507,
+        "water_ml": 134.0018,
+        "carbon_g": 11.5504
+      },
+      "medium": {
+        "energy_wh": 24.5958,
+        "water_ml": 171.2082,
+        "carbon_g": 14.7575
+      },
+      "long": {
+        "energy_wh": 29.0782,
+        "water_ml": 202.4102,
+        "carbon_g": 17.4469
+      },
+      "insight": "Vendor-hosted DeepSeek R1 — about 4× less energy than the same model hosted on Azure infrastructure; hosting choice matters as much as model choice for inference footprint."
+    }
+  },
+  "tiers": {
+    "short": {
+      "tokens": 300,
+      "label": "Short prompt",
+      "prompt_example": "What's 2+2?"
+    },
+    "medium": {
+      "tokens": 1000,
+      "label": "Medium prompt",
+      "prompt_example": "Explain the difference between SQL and NoSQL databases."
+    },
+    "long": {
+      "tokens": 1500,
+      "label": "Long reasoning prompt",
+      "prompt_example": "What's the most efficient way to write a recursive function that calculates the Fibonacci sequence?"
+    }
+  },
+  "equivalences": {
+    "energy_wh_per_unit": {
+      "value": 1,
+      "comparison": "30 seconds of phone charging"
+    },
+    "water_ml_per_unit": {
+      "value": 1,
+      "comparison": "0.2 teaspoons of drinking water"
+    },
+    "carbon_g_per_unit": {
+      "value": 1,
+      "comparison": "7 metres of average car driving"
+    }
+  },
+  "defaults": {
+    "model": "GPT-4o (Aug)",
+    "tier": "long"
+  }
+}
