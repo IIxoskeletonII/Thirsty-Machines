@@ -17,8 +17,9 @@ Built for the Data Visualisation 2026 course at LUISS Guido Carli, MSc Data Scie
 - [Model energy ranking](https://public.tableau.com/shared/Q884JPRJ3) — 66 LLM models ranked by per-query energy across short, medium, and long prompts.
 - [Aggregate scaling](https://public.tableau.com/views/ThirstyMachinesAggregatescaling/AggregateScaling) — per-query energy, water, and carbon scaled to 1B / 50B / 100B prompts with everyday equivalences.
 - [Efficiency vs query length](https://public.tableau.com/views/ThirstyMachinesEfficiencyvsquerylength/Efficiencyvsquerylength) — 12 representative models with per-query energy traced across short, medium, and long prompts to surface within-model scaling curves.
+- [System map](https://public.tableau.com/views/ThirstyMachinesSystemmap/SystemMap) — Sankey trace of one query from per-query energy through Virginia's grid to emitted carbon.
 
-Component 8 will be added as it is published.
+All six Tableau dashboards are published.
 
 ## Repository structure
 
