@@ -8,7 +8,14 @@ Built for the Data Visualisation 2026 course at LUISS Guido Carli, MSc Data Scie
 
 ## Live site
 
-[link to be added once deployed]
+The full project is published at **[thirsty-machines.vercel.app](https://thirsty-machines.vercel.app/)** — the interactive prompt-pipeline component, six embedded Tableau dashboards, and the white-hat / black-hat static pair, threaded together with explanatory prose and a findings section.
+
+Direct anchors:
+
+- Interactive prompt-pipeline component (C1): <https://thirsty-machines.vercel.app/#one-prompt>
+- White-hat / black-hat static pair (C7): <https://thirsty-machines.vercel.app/#two-stories>
+
+The C7 static pair is also committed as standalone PNGs at `web/assets/c7_white_hat.png` and `web/assets/c7_black_hat.png`. The C1 component has its own standalone view at `web/components/prompt-pipeline/index.html`.
 
 ## Tableau dashboards
 
@@ -29,9 +36,11 @@ All six Tableau dashboards are published.
 - `report/` — five-page paper-style report and AI use appendix
 - `src/` — Python modules factored out of notebooks for reuse
 - `tableau/` — Tableau workbook files
-- `web/` — static site and the original JavaScript component
+- `web/` — assembled static site (`index.html`, `styles/`, `scripts/`), prompt-pipeline D3 component, and the C7 static figure assets
 
 ## Reproducing the analysis
+
+To read the project, visit the [live site](https://thirsty-machines.vercel.app/) — it carries the same eight visual components and the connecting prose as a single narrative read-through. The steps below are for reproducing the analysis from raw data.
 
 1. Clone this repository.
 2. Create a Python virtual environment and install dependencies:
