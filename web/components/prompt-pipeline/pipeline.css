@@ -49,22 +49,10 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Cream-paper base. The page is now visibly different from white at
-     all viewing distances (~14 luminance units off white), which makes
-     white panels actually pop. The gradient overlay is reduced from 0.6
-     to 0.5 so the cream base reads through. The dot grid bumps to 0.08
-     opacity to remain visible against the cream rather than the prior
-     near-white. */
-  background-color: #f4ede2;
-  background-image:
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.5) 0%,
-      rgba(244, 237, 226, 0.5) 100%
-    ),
-    radial-gradient(circle, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
-  background-size: 100% 100%, 28px 28px;
-  background-attachment: fixed, fixed;
+  /* Soft-blue page base. White panels lift off the page tonally so the
+     three-layer hierarchy (page → panel → elevated card) reads at all
+     viewing distances. */
+  background-color: #dfe8f4;
 }
 
 /* ---------- layout ---------- */
@@ -79,12 +67,11 @@ body {
   min-height: 100vh;
 }
 
-/* Three layered surfaces: cream page → white panels → elevated cards.
-   White panels against #f4ede2 cream produce a ~14-unit luminance step,
-   well above perceptual threshold; the 9% border defines panel edges
-   crisply, and the 8%/6% shadow stack lifts the panel above the page.
-   margin-bottom is intentionally omitted because .pipeline is a CSS Grid
-   with gap. */
+/* Three layered surfaces: soft-blue page → white panels → elevated
+   cards. White panels lift cleanly above the #dfe8f4 page; the 9%
+   border defines panel edges crisply, and the 8%/6% shadow stack lifts
+   the panel above the page. margin-bottom is intentionally omitted
+   because .pipeline is a CSS Grid with gap. */
 .panel {
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.09);
@@ -551,8 +538,8 @@ body {
   border-radius: var(--radius-md);
   padding: 16px 18px;
   /* Card elevation calibrated above the panel's 8% shadow so the
-     three-layer hierarchy reads cleanly: cream page → white panel →
-     elevated card. Cards now sit ~50% higher than panels. */
+     three-layer hierarchy reads cleanly: soft-blue page → white panel
+     → elevated card. Cards now sit ~50% higher than panels. */
   box-shadow:
     0 8px 20px rgba(0, 0, 0, 0.1),
     0 2px 6px rgba(0, 0, 0, 0.06);

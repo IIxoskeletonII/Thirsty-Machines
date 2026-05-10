@@ -3,10 +3,18 @@
 // step 3 are preserved; the Send button now drives a master timer instead
 // of logging a stub.
 
+// Resolved against this script's own URL so the same code finds models.json
+// from both the standalone view at /components/prompt-pipeline/index.html
+// and the assembled site at /index.html.
+const MODELS_JSON_URL = new URL(
+  "./data/models.json",
+  document.currentScript?.src ?? document.baseURI,
+).href;
+
 (async () => {
   let data;
   try {
-    const response = await fetch("./data/models.json");
+    const response = await fetch(MODELS_JSON_URL);
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     data = await response.json();
   } catch (err) {

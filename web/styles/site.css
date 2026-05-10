@@ -206,6 +206,12 @@ body {
   padding: 28px 32px;
 }
 
+.c1-stack {
+  display: grid;
+  gap: 24px;
+  margin-top: 8px;
+}
+
 .tableau-embed {
   background: var(--color-card);
   border: 1px solid var(--color-card-border);
