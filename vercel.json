@@ -3,6 +3,9 @@
   "outputDirectory": "web",
   "cleanUrls": true,
   "trailingSlash": false,
+  "framework": null,
+  "installCommand": null,
+  "buildCommand": null,
   "headers": [
     {
       "source": "/components/prompt-pipeline/(.*)",
