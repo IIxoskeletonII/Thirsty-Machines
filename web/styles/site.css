@@ -169,9 +169,50 @@ body {
 .site-section__commentary {
   font-size: 16px;
   line-height: 1.6;
-  margin: 24px 0 0;
+  margin: 24px 0;
   color: var(--color-text-muted, #555555);
   max-width: 64ch;
+}
+
+.site-section__subheading {
+  font-size: 18px;
+  line-height: 1.3;
+  font-weight: 600;
+  margin: 32px 0 12px;
+  color: var(--color-text, #1a1a1a);
+}
+
+.techniques-list {
+  margin: 0 0 24px;
+  padding-left: 24px;
+  max-width: 64ch;
+}
+
+.techniques-list > li {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-text-muted, #555555);
+  margin-bottom: 12px;
+}
+
+.techniques-list > li:last-child {
+  margin-bottom: 0;
+}
+
+.techniques-list strong {
+  color: var(--color-text, #1a1a1a);
+}
+
+.prose-link {
+  color: var(--color-link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+.prose-link:hover,
+.prose-link:focus-visible {
+  text-decoration-thickness: 2px;
 }
 
 .placeholder {

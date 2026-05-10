@@ -50,11 +50,15 @@
       <main id="main">
         <section id="hero" class="site-section" aria-labelledby="hero-heading">
           <h2 id="hero-heading" class="sr-only">Introduction</h2>
-          <p class="placeholder">
-            <span class="placeholder__tag">Placeholder</span>
-            Hero framing paragraph (60&ndash;90 words) lands here in stage 4.
-            The page header above already carries the central question
-            verbatim and the project subtitle.
+          <p class="site-section__lede">
+            Most coverage of AI's environmental cost reports aggregate
+            figures &mdash; terawatt-hours per year, billions of litres of
+            water &mdash; that are too large to feel. This project starts at
+            the unit of one prompt and traces the cost upstream into
+            electricity, water, and atmosphere, then re-aggregates
+            deliberately. The intended reader uses generative AI tools
+            regularly, has read a headline about its environmental
+            footprint, and wants to know whether the concern is justified.
           </p>
         </section>
 
@@ -66,9 +70,13 @@
           <h2 id="one-prompt-heading" class="site-section__heading">
             One prompt
           </h2>
-          <p class="placeholder">
-            <span class="placeholder__tag">Placeholder</span>
-            Two-sentence intro lands in stage 4.
+          <p class="site-section__lede">
+            What follows is the per-prompt cost of running a frontier large
+            language model &mdash; the GPT-class systems from OpenAI,
+            Anthropic, Meta, and others. Pick a model, pick a prompt
+            length, click Send: energy in watt-hours, water in millilitres,
+            and carbon in grams of CO&#8322; tick up live, with everyday
+            equivalences for each.
           </p>
 
           <div class="c1-stack">
@@ -429,6 +437,11 @@
               </p>
             </section>
           </div>
+
+          <p class="site-section__commentary">
+            Models do not all cost the same &mdash; and the next section
+            ranks them.
+          </p>
         </section>
 
         <section
@@ -439,9 +452,17 @@
           <h2 id="comparing-models-heading" class="site-section__heading">
             Comparing models
           </h2>
-          <p class="placeholder">
-            <span class="placeholder__tag">Placeholder</span>
-            Intro paragraph (~70 words) lands in stage 4.
+          <p class="site-section__lede">
+            Same data, two cuts. The dashboard below ranks frontier models
+            by per-query energy within each query-length tier, where
+            length is measured in tokens (the small chunks of text a model
+            processes &mdash; roughly a short word or punctuation each).
+            At the long tier (1500-token prompts, the kind of reasoning
+            task a chatbot handles many times per day), per-query energy
+            varies 184&times; across deployed models: from Llama 4
+            Maverick at 0.27 Wh up to o3-pro at 49.93 Wh. The ranking is
+            stable at the extremes; the middle of the pack reshuffles as
+            queries lengthen.
           </p>
 
           <div class="tableau-embed">
@@ -456,9 +477,12 @@
             ></iframe>
           </div>
 
-          <p class="placeholder">
-            <span class="placeholder__tag">Placeholder</span>
-            Bridge paragraph between C2 and C6 (~50 words) lands in stage 4.
+          <p class="site-section__commentary">
+            The first dashboard ranks models within a tier; the next traces
+            how each individual model scales from short to long prompts.
+            Where the ranking answers which models are most expensive, the
+            line traces answer which models are most prompt-sensitive
+            &mdash; the two questions don't always have the same answer.
           </p>
 
           <div class="tableau-embed">
@@ -473,9 +497,10 @@
             ></iframe>
           </div>
 
-          <p class="placeholder">
-            <span class="placeholder__tag">Placeholder</span>
-            Closing sentence after C6 lands in stage 4.
+          <p class="site-section__commentary">
+            The shape of each line is the diagnostic: a flat trace means
+            the model is roughly insensitive to prompt length; a steep
+            trace means cost grows fast with context.
           </p>
         </section>
 
@@ -487,9 +512,18 @@
           <h2 id="where-the-cost-lands-heading" class="site-section__heading">
             Where the cost lands
           </h2>
-          <p class="placeholder">
-            <span class="placeholder__tag">Placeholder</span>
-            Intro paragraph (~80 words) lands in stage 4.
+          <p class="site-section__lede">
+            Hyperscalers &mdash; the cloud providers running these models
+            &mdash; route inference traffic (the model-running work
+            triggered each time someone presses send) dynamically across
+            regions and rarely disclose which physical facility served any
+            single request. The map shows where the major cloud regions
+            are located, not where any one query went. Toggle between two
+            layers: grid carbon intensity (grams of CO&#8322; per
+            kilowatt-hour generated, the lower the cleaner) from Ember
+            2025, and Aqueduct's baseline water-stress score on its 0&ndash;5
+            scale. Hong Kong and Singapore lack water-stress scores under
+            Aqueduct's hydrological-basin methodology.
           </p>
 
           <div class="tableau-embed">
@@ -504,9 +538,14 @@
             ></iframe>
           </div>
 
-          <p class="placeholder">
-            <span class="placeholder__tag">Placeholder</span>
-            Bridge paragraph between C3 and C8 (~60 words) lands in stage 4.
+          <p class="site-section__commentary">
+            Below is the same query traced end-to-end. The Sankey starts
+            with one user prompt &mdash; a typical long-form coding question
+            sent to GPT-4o &mdash; and follows it through the cellular
+            network, the cloud data centre, the regional electricity grid,
+            and finally to the carbon emissions released into the
+            atmosphere. Each transition shows what the prompt picks up
+            along the way.
           </p>
 
           <div class="tableau-embed">
@@ -521,9 +560,11 @@
             ></iframe>
           </div>
 
-          <p class="placeholder">
-            <span class="placeholder__tag">Placeholder</span>
-            Closing sentence after C8 (the −3.8% gap) lands in stage 4.
+          <p class="site-section__commentary">
+            The derived figure (~0.73 g) sits 3.8% below Jegham's published
+            0.755 g because the integration uses Virginia's actual 2025
+            grid intensity (327 gCO&#8322;/kWh from Ember) where Jegham
+            assumed a static 0.34.
           </p>
         </section>
 
@@ -535,9 +576,14 @@
           <h2 id="one-to-a-billion-heading" class="site-section__heading">
             One to a billion
           </h2>
-          <p class="placeholder">
-            <span class="placeholder__tag">Placeholder</span>
-            Intro paragraph (~70 words) lands in stage 4.
+          <p class="site-section__lede">
+            The per-query cost is small. The aggregate cost depends on how
+            many prompts get sent. The dashboard below takes one selected
+            model &mdash; defaulted to GPT-4o, the model that has served
+            most consumer ChatGPT traffic &mdash; and projects its energy,
+            water, and carbon footprint to one billion, fifty billion, and
+            one hundred billion daily prompts. Use the dropdown to swap in
+            a different model and see how the multiplier changes.
           </p>
 
           <div class="tableau-embed tableau-embed--c5">
@@ -552,10 +598,11 @@
             ></iframe>
           </div>
 
-          <p class="placeholder">
-            <span class="placeholder__tag">Placeholder</span>
-            Closing sentence on equivalences (households, swimming pools,
-            transatlantic flights) lands in stage 4.
+          <p class="site-section__commentary">
+            The everyday equivalences &mdash; household-years of
+            electricity, Olympic swimming pools of water, transatlantic
+            flights of CO&#8322; &mdash; aren't the analytical claim. They
+            are a way to make the magnitudes legible.
           </p>
         </section>
 
@@ -567,9 +614,13 @@
           <h2 id="training-scale-heading" class="site-section__heading">
             Training scale
           </h2>
-          <p class="placeholder">
-            <span class="placeholder__tag">Placeholder</span>
-            Intro paragraph (~50 words) lands in stage 4.
+          <p class="site-section__lede">
+            The project's analytical focus is inference, but training
+            compute is the necessary historical context. Training the
+            largest models has scaled on a sustained log-linear trajectory
+            in FLOP (floating-point operations, the unit of raw compute
+            work). Only fifteen recent frontier-model releases publish
+            verified training compute; the chart shows those.
           </p>
 
           <div class="tableau-embed">
@@ -584,9 +635,9 @@
             ></iframe>
           </div>
 
-          <p class="placeholder">
-            <span class="placeholder__tag">Placeholder</span>
-            Closing sentence on disclosure unevenness lands in stage 4.
+          <p class="site-section__commentary">
+            Disclosure is uneven across the industry, and what cannot be
+            measured cannot be charted.
           </p>
         </section>
 
@@ -598,9 +649,17 @@
           <h2 id="two-stories-heading" class="site-section__heading">
             Two stories from the same data
           </h2>
-          <p class="placeholder">
-            <span class="placeholder__tag">Placeholder</span>
-            Intro paragraph (~80 words) lands in stage 4.
+          <p class="site-section__lede">
+            Identical data, opposite framing, opposite conclusions. The
+            two charts that follow are built from the same per-query
+            inference numbers; the framing decisions diverge completely.
+            The first reads honestly &mdash; full sample, log axis, neutral
+            palette, attribution at title-level contrast. The second
+            weaponises every legitimate-looking technique a non-pedant
+            reader is unlikely to catch: cohort cuts, axis truncation,
+            alarmist colour, and a geographic frame that imports a
+            worst-case region's stress context onto data from regions
+            that aren't that region.
           </p>
 
           <figure class="figure-static">
@@ -618,9 +677,8 @@
             </figcaption>
           </figure>
 
-          <p class="placeholder">
-            <span class="placeholder__tag">Placeholder</span>
-            One short sentence between charts lands in stage 4.
+          <p class="site-section__commentary">
+            Now the same data, framed differently:
           </p>
 
           <figure class="figure-static">
@@ -637,10 +695,55 @@
             </figcaption>
           </figure>
 
-          <p class="placeholder">
-            <span class="placeholder__tag">Placeholder</span>
-            Six-techniques list and closing methodological paragraph land
-            in stage 4.
+          <h3 class="site-section__subheading">
+            Six techniques the second chart uses
+          </h3>
+          <ol class="techniques-list">
+            <li>
+              <strong>Sample restriction.</strong> The chart shows only the
+              31 of 62 long-tier models with water consumption above 25 mL
+              &mdash; the heavy half. The 31 efficient models that would
+              drag the average down are excluded by construction.
+            </li>
+            <li>
+              <strong>Axis truncation.</strong> The x-axis starts at 25 mL,
+              not zero. Differences within the heavy tail get visually
+              magnified, and every value looks big.
+            </li>
+            <li>
+              <strong>Geographic recontextualisation.</strong> Per-query
+              water values come from globally distributed Jegham
+              benchmarks. They are framed as if they apply at Qatar
+              Central, the global worst-case water-stress region (Aqueduct
+              score 5.0). The numbers are not altered &mdash; but the
+              x-axis label imports Qatar's stress context onto data from
+              regions that are not Qatar.
+            </li>
+            <li>
+              <strong>Aggregate framing.</strong> Per-query values are
+              projected to one billion daily users multiplied by 365 days,
+              producing tens of billions of litres per year, expressed in
+              Olympic swimming pools.
+            </li>
+            <li>
+              <strong>Palette and typography.</strong> Deep red primary,
+              bold heavy title weights, newsroom-graphic register. The
+              visual establishes urgency before any number is processed.
+            </li>
+            <li>
+              <strong>Source de-emphasis.</strong> Full attribution and
+              methodological caveats sit in the footer at low contrast,
+              easy to skim past.
+            </li>
+          </ol>
+
+          <p class="site-section__commentary">
+            The lesson is methodological. Neither chart is "the truth" in
+            any complete sense; both are readings of the same underlying
+            data. The reader's defence is recognising the moves &mdash;
+            knowing what a cohort cut, an axis truncation, or a swap of
+            geographic context look like &mdash; well enough to spot them
+            before the conclusion lands.
           </p>
         </section>
 
@@ -650,11 +753,54 @@
           aria-labelledby="findings-heading"
         >
           <h2 id="findings-heading" class="site-section__heading">Findings</h2>
-          <p class="placeholder">
-            <span class="placeholder__tag">Placeholder</span>
-            Four findings (paraphrased from the project's settled findings,
-            with traceable numerical claims) land in stage 4.
-          </p>
+          <ol class="findings-list">
+            <li>
+              <h3>
+                Per-query inference energy varies 184&times; across
+                currently deployed frontier models.
+              </h3>
+              <p>
+                At the long tier (1500-token prompts), Llama 4 Maverick
+                uses 0.27 Wh per query; o3-pro uses 49.93 Wh. Same prompt,
+                two orders of magnitude in cost.
+              </p>
+            </li>
+            <li>
+              <h3>
+                Aggregate consumption is dominated by the largest
+                reasoning models.
+              </h3>
+              <p>
+                Provider routing decisions and user-side model choice both
+                have real environmental leverage &mdash; one o3-pro
+                long-tier prompt is roughly equivalent to 184 Llama 4
+                Maverick prompts at the same length.
+              </p>
+            </li>
+            <li>
+              <h3>
+                Geographic distribution of the cost is highly uneven.
+              </h3>
+              <p>
+                Virginia's 2025 grid intensity is 327 gCO&#8322;/kWh
+                against Washington's 124 &mdash; a 2.6&times; ratio at
+                identical workload. Arizona's water-stress score, 4.39 on
+                Aqueduct's 0&ndash;5 scale, is the highest in the United
+                States.
+              </p>
+            </li>
+            <li>
+              <h3>
+                Per-query efficiency is improving fast; aggregate demand
+                is growing faster.
+              </h3>
+              <p>
+                Both statements are true. The reconciliation is a
+                Jevons-paradox argument the project's report develops
+                further.
+              </p>
+            </li>
+          </ol>
         </section>
 
         <section
@@ -665,20 +811,54 @@
           <h2 id="methodology-heading" class="site-section__heading">
             Methodology
           </h2>
-          <p class="placeholder">
-            <span class="placeholder__tag">Placeholder</span>
-            Two paragraphs (datasets and limitations) plus a link to the
-            public GitHub repository land in stage 4.
+          <p class="site-section__lede">
+            Five public datasets feed the analysis. The Jegham per-query
+            benchmark (How Hungry is AI?) gives per-query energy, water,
+            and carbon for 66 frontier models across three query-length
+            tiers. Epoch AI provides a 3,509-system database with training
+            compute, parameters, and disclosed power draw. Ember publishes
+            2025 electricity grid carbon intensity at country and US-state
+            granularity. The IM3 Open Source Data Center Atlas geocodes
+            1,479 US data-centre facilities. The WRI Aqueduct 4.0
+            publishes country and province-level baseline water stress on
+            a 0&ndash;5 scale. All five sit under permissive licences
+            (CC-BY 4.0 or ODbL).
+          </p>
+          <p class="site-section__commentary">
+            Three known limitations bound the analytical claims. First,
+            inference numbers are estimated, not measured: proprietary
+            providers (OpenAI, Anthropic, Google) do not publish per-query
+            energy directly, and Jegham's confidence intervals are wide.
+            Second, water consumption is sometimes reported as on-site
+            cooling water and sometimes as off-site thermoelectric water
+            for grid generation; the headline figure can change by an
+            order of magnitude depending on which the source uses. Third,
+            geographic attribution is coarse &mdash; the map shows where
+            cloud regions are, not where any specific query went.
+          </p>
+          <p class="site-section__commentary">
+            We publish the full code, data preparation notebooks, and
+            Tableau workbook sources at
+            <a
+              class="prose-link"
+              href="https://github.com/IIxoskeletonII/Thirsty-Machines"
+              >github.com/IIxoskeletonII/Thirsty-Machines</a
+            >.
           </p>
         </section>
       </main>
 
       <footer class="site-footer">
-        <p>
-          Eliya Allam &middot; Mattia Cervelli
-        </p>
+        <p>Eliya Allam &middot; Mattia Cervelli</p>
         <p>LUISS Data Visualisation 2026</p>
         <p>Submitted 10 May 2026</p>
+        <p>
+          <a
+            class="prose-link"
+            href="https://github.com/IIxoskeletonII/Thirsty-Machines"
+            >github.com/IIxoskeletonII/Thirsty-Machines</a
+          >
+        </p>
       </footer>
     </div>
 
