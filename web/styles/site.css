@@ -232,6 +232,37 @@ body {
   margin-top: 24px;
 }
 
+@media (min-width: 1024px) {
+  /* Visual hierarchy on desktop:
+       prose                 → 960 px (the .site content column)
+       interactive components → up to 1400 px (.tableau-embed, .c1-stack)
+       static figures         → 960 px (.figure-static, kept in column)
+     Tableau dashboards (1100–1650 px native) and C1's three-column
+     layout earn the wider tier; the C7 PNGs read better at the prose
+     column where their original chart proportions hold. The 769–1023 px
+     band falls through to the default rules above; stage-5 mobile rules
+     (max-width: 768px) live in their own block and won't collide. */
+  .tableau-embed,
+  .c1-stack {
+    --bleed-max: min(1400px, calc(100vw - 48px));
+    width: var(--bleed-max);
+    margin-left: calc((100% - var(--bleed-max)) / 2);
+    margin-right: 0;
+  }
+  /* C5 renders at fixed 1650×1027 (per tableau/README.md sizing note).
+     The iframe expands to its native 1650 inside the 1400-cap wrapper;
+     the wrapper's overflow-x: auto from the default rule makes only the
+     wrapper scroll horizontally, never the whole page. min-height keeps
+     the toolbar from being clipped by the iframe's own internal scroll. */
+  .tableau-embed--c5 {
+    min-height: 1080px;
+  }
+  .tableau-embed--c5 iframe {
+    width: 1650px;
+    height: 1080px;
+  }
+}
+
 .figure-static {
   margin: 0 0 24px;
 }
