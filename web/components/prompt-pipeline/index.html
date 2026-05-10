@@ -9,11 +9,13 @@
   <body>
     <main class="pipeline">
       <header class="pipeline__header">
+        <p class="header-eyebrow">Thirsty Machines · LUISS Data Visualisation 2026</p>
         <h1 class="pipeline__title">One prompt's environmental cost</h1>
         <p class="pipeline__subtitle">Watch what happens when you press send.</p>
+        <div class="header-accent" aria-hidden="true"></div>
       </header>
 
-      <section class="controls" aria-label="Prompt controls">
+      <section class="panel panel--controls controls" aria-label="Prompt controls">
         <fieldset class="controls__group controls__group--models">
           <legend class="controls__legend">Model</legend>
           <div class="controls__row">
@@ -111,7 +113,7 @@
         </div>
       </section>
 
-      <section class="visualization" aria-label="Pipeline visualisation">
+      <section class="panel panel--viz visualization" aria-label="Pipeline visualisation">
         <div class="viz-column viz-column--phone">
           <div class="phone" role="img" aria-label="Stylised mobile phone">
             <div class="phone__screen">
@@ -189,6 +191,12 @@
                 tabindex="-1"
                 aria-label="Example prompt"
               >What's the most efficient way to write a recursive function that calculates the Fibonacci sequence?</textarea>
+              <div class="phone__response" aria-hidden="true" hidden>
+                <span class="phone__response-text"></span><span
+                  class="phone__response-cursor"
+                  aria-hidden="true"
+                ></span>
+              </div>
             </div>
           </div>
           <p class="viz-column__caption phone__caption">Typical long prompt</p>
@@ -210,7 +218,23 @@
               y2="130"
             />
 
+            <g class="region-callout" opacity="0" aria-hidden="true">
+              <text
+                class="region-callout__line1"
+                x="380"
+                y="62"
+                text-anchor="middle"
+              ></text>
+              <text
+                class="region-callout__line2"
+                x="380"
+                y="78"
+                text-anchor="middle"
+              ></text>
+            </g>
+
             <g class="pipeline-stage pipeline-stage--tower">
+              <circle class="pipeline-stage__backdrop" cx="100" cy="130" r="28" />
               <line x1="90" y1="150" x2="100" y2="110" />
               <line x1="110" y1="150" x2="100" y2="110" />
               <line x1="86" y1="150" x2="114" y2="150" />
@@ -222,6 +246,7 @@
             </g>
 
             <g class="pipeline-stage pipeline-stage--network">
+              <circle class="pipeline-stage__backdrop" cx="240" cy="130" r="28" />
               <circle cx="240" cy="130" r="14" />
               <line x1="240" y1="113" x2="240" y2="105" />
               <line x1="240" y1="147" x2="240" y2="155" />
@@ -235,6 +260,7 @@
             </g>
 
             <g class="pipeline-stage pipeline-stage--datacentre">
+              <circle class="pipeline-stage__backdrop" cx="380" cy="130" r="34" />
               <rect x="360" y="105" width="40" height="50" rx="3" />
               <line x1="366" y1="116" x2="394" y2="116" />
               <line x1="366" y1="125" x2="394" y2="125" />
@@ -245,6 +271,7 @@
             </g>
 
             <g class="pipeline-stage pipeline-stage--grid">
+              <circle class="pipeline-stage__backdrop" cx="510" cy="130" r="28" />
               <line x1="510" y1="108" x2="510" y2="152" />
               <line x1="498" y1="116" x2="522" y2="116" />
               <line x1="500" y1="124" x2="520" y2="124" />
@@ -262,6 +289,19 @@
         </div>
 
         <div class="viz-column viz-column--counters">
+          <div class="comparison-header" hidden>
+            <span class="comparison-header__text"
+              >Previous run ·
+              <span class="comparison-header__model"></span>
+            </span>
+            <button
+              type="button"
+              class="comparison-header__clear"
+              aria-label="Clear comparison"
+            >
+              × Clear
+            </button>
+          </div>
           <article class="counter" data-metric="energy">
             <div class="counter__icon" aria-hidden="true">⚡</div>
             <div class="counter__body">
@@ -271,6 +311,10 @@
                 <span class="counter__unit">Wh</span>
               </p>
               <p class="counter__equiv" data-equiv="energy">≈ —</p>
+              <p class="counter__previous" hidden>
+                Previous:
+                <span class="counter__previous-value" data-previous="energy">—</span>
+              </p>
             </div>
           </article>
 
@@ -283,6 +327,10 @@
                 <span class="counter__unit">mL</span>
               </p>
               <p class="counter__equiv" data-equiv="water">≈ —</p>
+              <p class="counter__previous" hidden>
+                Previous:
+                <span class="counter__previous-value" data-previous="water">—</span>
+              </p>
             </div>
           </article>
 
@@ -295,6 +343,10 @@
                 <span class="counter__unit">g CO₂</span>
               </p>
               <p class="counter__equiv" data-equiv="carbon">≈ —</p>
+              <p class="counter__previous" hidden>
+                Previous:
+                <span class="counter__previous-value" data-previous="carbon">—</span>
+              </p>
             </div>
           </article>
         </div>
@@ -307,10 +359,12 @@
         aria-live="polite"
       ></div>
 
-      <p class="insight" id="insight">
-        Select a model and click Send to see how a prompt travels through the
-        system.
-      </p>
+      <section class="panel panel--insight">
+        <p class="insight" id="insight">
+          Select a model and click Send to see how a prompt travels through the
+          system.
+        </p>
+      </section>
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>

@@ -45,11 +45,26 @@ body {
 body {
   font-family: var(--font-family);
   color: var(--color-text);
-  background: var(--color-bg);
   font-size: 16px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Cream-paper base. The page is now visibly different from white at
+     all viewing distances (~14 luminance units off white), which makes
+     white panels actually pop. The gradient overlay is reduced from 0.6
+     to 0.5 so the cream base reads through. The dot grid bumps to 0.08
+     opacity to remain visible against the cream rather than the prior
+     near-white. */
+  background-color: #f4ede2;
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(244, 237, 226, 0.5) 100%
+    ),
+    radial-gradient(circle, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+  background-size: 100% 100%, 28px 28px;
+  background-attachment: fixed, fixed;
 }
 
 /* ---------- layout ---------- */
@@ -64,10 +79,35 @@ body {
   min-height: 100vh;
 }
 
+/* Three layered surfaces: cream page → white panels → elevated cards.
+   White panels against #f4ede2 cream produce a ~14-unit luminance step,
+   well above perceptual threshold; the 9% border defines panel edges
+   crisply, and the 8%/6% shadow stack lifts the panel above the page.
+   margin-bottom is intentionally omitted because .pipeline is a CSS Grid
+   with gap. */
+.panel {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  border-radius: 16px;
+  padding: 28px 32px;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
 /* ---------- header ---------- */
 
 .pipeline__header {
   text-align: left;
+}
+
+.header-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin: 0 0 8px;
 }
 
 .pipeline__title {
@@ -82,6 +122,18 @@ body {
   font-size: 16px;
   color: var(--color-text-muted);
   margin: 0;
+}
+
+/* Energy-blue anchor tying the header visually to the energy counter.
+   Sized at 8×96 — masthead scale that lands as a deliberate publication
+   element rather than a hairline. */
+.header-accent {
+  width: 96px;
+  height: 8px;
+  background: var(--color-energy);
+  border-radius: 4px;
+  margin-top: 14px;
+  margin-bottom: 28px;
 }
 
 /* ---------- controls ---------- */
@@ -246,9 +298,11 @@ body {
   background: var(--color-text);
   border-radius: 28px;
   padding: 14px;
+  /* Same elevation tier as the counter cards — both are layer-3 cards
+     sitting on the visualisation panel, calibrated above panel shadow. */
   box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.08),
-    0 1px 4px rgba(0, 0, 0, 0.04);
+    0 8px 20px rgba(0, 0, 0, 0.1),
+    0 2px 6px rgba(0, 0, 0, 0.06);
   display: flex;
   align-items: stretch;
   justify-content: stretch;
@@ -308,7 +362,10 @@ body {
 }
 
 .phone__input {
-  flex: 1;
+  /* Sized to its rows attribute (six lines) but capped at 45% of the
+     screen so the response area below has guaranteed space. */
+  flex: 0 0 auto;
+  max-height: 45%;
   width: 100%;
   border: none;
   outline: none;
@@ -327,6 +384,48 @@ body {
 
 .phone__input::placeholder {
   color: var(--color-text-muted);
+}
+
+/* Streaming model response. Monospace deliberately reads as "AI output"
+   register — and the long-tier response IS code, which mono renders
+   correctly. pre-wrap preserves newlines from the JSON string. */
+.phone__response {
+  flex: 1 1 auto;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--color-text);
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  overflow-y: auto;
+  overflow-x: hidden;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.phone__response[hidden] {
+  display: none;
+}
+
+.phone__response-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: var(--color-text);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: phone-response-blink 0.6s steps(2, start) infinite;
+}
+
+.phone__response-cursor[hidden] {
+  display: none;
+}
+
+@keyframes phone-response-blink {
+  to {
+    visibility: hidden;
+  }
 }
 
 .phone__caret {
@@ -364,6 +463,18 @@ body {
   stroke: #d1d5db;
   stroke-width: 2.5;
   stroke-dasharray: 4 4;
+  /* Slow drift makes the system feel alive when idle; -16 is exactly
+     two dash-units (4 dash + 4 gap) so the loop is seamless. */
+  animation: pipeline-track-shimmer 6s linear infinite;
+}
+
+@keyframes pipeline-track-shimmer {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -16;
+  }
 }
 
 .pipeline-stage {
@@ -388,6 +499,43 @@ body {
   stroke: none;
 }
 
+/* White circular backdrops give each stage substance and visually break
+   the dashed track into discrete waypoints. The data centre's backdrop
+   is slightly larger and casts a soft drop shadow to mark it as the
+   focal point of the pipeline. */
+.pipeline-stage__backdrop {
+  fill: #ffffff;
+  stroke: rgba(0, 0, 0, 0.06);
+  stroke-width: 1;
+}
+
+.pipeline-stage--datacentre .pipeline-stage__backdrop {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.06));
+}
+
+/* Geographic callout above the data centre during the work phase. Two
+   lines: region name (slightly bolder), then grid carbon + water stress
+   (muted). opacity is set on the SVG group via setAttribute from JS so
+   it interpolates through the CSS transition rather than snapping. */
+.region-callout {
+  transition: opacity 400ms ease;
+}
+
+.region-callout__line1 {
+  fill: var(--color-text);
+  font-size: 11px;
+  font-weight: 600;
+  font-family: inherit;
+  letter-spacing: 0.02em;
+}
+
+.region-callout__line2 {
+  fill: var(--color-text-muted);
+  font-size: 10px;
+  font-weight: 400;
+  font-family: inherit;
+}
+
 /* ---------- counter cards ---------- */
 
 .viz-column--counters {
@@ -402,6 +550,12 @@ body {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 16px 18px;
+  /* Card elevation calibrated above the panel's 8% shadow so the
+     three-layer hierarchy reads cleanly: cream page → white panel →
+     elevated card. Cards now sit ~50% higher than panels. */
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.1),
+    0 2px 6px rgba(0, 0, 0, 0.06);
 }
 
 .counter__icon {
@@ -472,8 +626,6 @@ body {
   font-style: italic;
   color: var(--color-text-muted);
   margin: 0;
-  padding: var(--gap-md) 0 0;
-  border-top: 1px solid var(--color-border);
   text-align: left;
   max-width: 75ch;
   /* Pretty is broadly supported; balance is the better choice for short
@@ -532,6 +684,11 @@ body {
     gap: var(--gap-md);
   }
 
+  .panel {
+    padding: 20px 18px;
+    border-radius: 12px;
+  }
+
   .pipeline__title {
     font-size: 24px;
   }
@@ -571,23 +728,38 @@ body {
     animation: none;
     opacity: 1;
   }
+
+  .pipeline-track {
+    animation: none;
+  }
+
+  .phone__response-cursor {
+    animation: none;
+  }
+
+  .region-callout {
+    transition: none;
+  }
 }
 
 /* ---------- step 4: animation ---------- */
 
 /* Stage stroke transitions when .is-active is toggled. The data centre's
-   LED is excluded so its orange fill stays the only colour spot. */
+   LED is excluded so its orange fill stays the only colour spot, and the
+   stage backdrop is excluded so the white waypoint stays white. */
 .pipeline-stage path,
 .pipeline-stage line,
 .pipeline-stage rect,
-.pipeline-stage > circle:not(.pipeline-stage__led) {
+.pipeline-stage
+  > circle:not(.pipeline-stage__led):not(.pipeline-stage__backdrop) {
   transition: stroke 200ms ease;
 }
 
 .pipeline-stage.is-active path,
 .pipeline-stage.is-active line,
 .pipeline-stage.is-active rect,
-.pipeline-stage.is-active > circle:not(.pipeline-stage__led) {
+.pipeline-stage.is-active
+  > circle:not(.pipeline-stage__led):not(.pipeline-stage__backdrop) {
   stroke: var(--color-text);
 }
 
@@ -613,4 +785,61 @@ body {
 .btn[aria-disabled="true"] {
   opacity: 0.55;
   cursor: not-allowed;
+}
+
+/* ---------- comparison memory ---------- */
+
+/* Header above the counter column when a previous run exists. Quiet
+   muted register so it reads as context, not as primary content. */
+.comparison-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.comparison-header__model {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.comparison-header__clear {
+  background: transparent;
+  border: 0;
+  font-size: 11px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: 4px 6px;
+  font-family: inherit;
+  border-radius: 4px;
+}
+
+.comparison-header__clear:hover {
+  color: var(--color-text);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.comparison-header__clear:focus-visible {
+  outline: 2px solid var(--color-energy);
+  outline-offset: 2px;
+}
+
+/* Per-card previous value. Italic differentiates from the equivalence
+   line above it without changing the muted register. */
+.counter__previous {
+  font-size: 12.5px;
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin: 2px 0 0;
+}
+
+/* When the counter column reflows to a grid at narrow widths, the
+   comparison header should span every column rather than collapse into
+   the first cell. */
+@media (max-width: 900px) {
+  .comparison-header {
+    grid-column: 1 / -1;
+  }
 }

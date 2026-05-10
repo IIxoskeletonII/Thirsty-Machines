@@ -3,6 +3,11 @@
     "Llama 3.1 8B": {
       "organization": "Meta",
       "host": "AWS",
+      "host_region": {
+        "region_name": "AWS US-East-1 (Virginia)",
+        "grid_carbon_g_per_kwh": 327,
+        "water_stress_score": 2.56
+      },
       "speedTier": "fast",
       "tokensPerSecond": 150,
       "short": {
@@ -25,6 +30,11 @@
     "GPT-4o (Aug)": {
       "organization": "OpenAI",
       "host": "Azure",
+      "host_region": {
+        "region_name": "Azure East US (Virginia)",
+        "grid_carbon_g_per_kwh": 327,
+        "water_stress_score": 2.56
+      },
       "speedTier": "medium",
       "tokensPerSecond": 80,
       "short": {
@@ -47,6 +57,11 @@
     "Claude 3.7 Sonnet": {
       "organization": "Anthropic",
       "host": "Anthropic",
+      "host_region": {
+        "region_name": "AWS US-East-1 (Virginia)",
+        "grid_carbon_g_per_kwh": 327,
+        "water_stress_score": 2.56
+      },
       "speedTier": "medium",
       "tokensPerSecond": 60,
       "short": {
@@ -69,6 +84,11 @@
     "GPT-5 (minimal)": {
       "organization": "OpenAI",
       "host": "Azure",
+      "host_region": {
+        "region_name": "Azure East US (Virginia)",
+        "grid_carbon_g_per_kwh": 327,
+        "water_stress_score": 2.56
+      },
       "speedTier": "medium",
       "tokensPerSecond": 70,
       "short": {
@@ -91,6 +111,11 @@
     "GPT-5 (high)": {
       "organization": "OpenAI",
       "host": "Azure",
+      "host_region": {
+        "region_name": "Azure East US (Virginia)",
+        "grid_carbon_g_per_kwh": 327,
+        "water_stress_score": 2.56
+      },
       "speedTier": "slow",
       "tokensPerSecond": 40,
       "short": {
@@ -113,6 +138,7 @@
     "DeepSeek R1 (DeepSeek) [128k]": {
       "organization": "DeepSeek",
       "host": "DeepSeek",
+      "host_region": null,
       "speedTier": "slow",
       "tokensPerSecond": 30,
       "short": {
@@ -137,17 +163,20 @@
     "short": {
       "tokens": 300,
       "label": "Short prompt",
-      "prompt_example": "What's 2+2?"
+      "prompt_example": "What's 2+2?",
+      "response_example": "4."
     },
     "medium": {
       "tokens": 1000,
       "label": "Medium prompt",
-      "prompt_example": "Explain the difference between SQL and NoSQL databases."
+      "prompt_example": "Explain the difference between SQL and NoSQL databases.",
+      "response_example": "SQL databases store data in structured tables with strict schemas — examples include MySQL and PostgreSQL. They excel at complex relational queries and transactions. NoSQL databases like MongoDB use flexible document or key-value stores, which scale horizontally and handle unstructured data well."
     },
     "long": {
       "tokens": 1500,
       "label": "Long reasoning prompt",
-      "prompt_example": "What's the most efficient way to write a recursive function that calculates the Fibonacci sequence?"
+      "prompt_example": "What's the most efficient way to write a recursive function that calculates the Fibonacci sequence?",
+      "response_example": "Naive recursion for Fibonacci has O(2ⁿ) complexity due to repeated subproblems. The most efficient approach uses memoization:\n\nfunction fib(n, memo = {}) {\n  if (n < 2) return n;\n  if (memo[n]) return memo[n];\n  return memo[n] = fib(n-1, memo) + fib(n-2, memo);\n}\n\nThis reduces time and space complexity to O(n)."
     }
   },
   "equivalences": {
