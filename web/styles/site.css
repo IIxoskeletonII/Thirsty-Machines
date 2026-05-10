@@ -6,7 +6,12 @@
     0 8px 20px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06);
   --radius-card: 16px;
 
-  --color-eyebrow: #6b7280;
+  /* Eyebrow and site-level muted text are darkened from pipeline.css's
+     defaults so they pass WCAG AA (>= 4.5:1) against the soft-blue page
+     background #dfe8f4. C1's --color-text-muted stays #666666 inside
+     the component because pipeline.css owns its visual register. */
+  --color-eyebrow: #4b5563;
+  --site-text-muted: #4b5563;
   --color-link: #1d4ed8;
 
   --color-accent: var(--color-energy, #0072b2);
@@ -97,7 +102,7 @@ body {
   font-size: 18px;
   line-height: 1.5;
   margin: 0 0 16px;
-  color: var(--color-text-muted, #555555);
+  color: var(--site-text-muted);
   max-width: 56ch;
 }
 
@@ -126,7 +131,7 @@ body {
 
 .site-nav a {
   font-size: 14px;
-  color: var(--color-text-muted, #555555);
+  color: var(--site-text-muted);
   text-decoration: none;
   padding: 6px 4px;
   border-radius: 4px;
@@ -170,7 +175,7 @@ body {
   font-size: 16px;
   line-height: 1.6;
   margin: 24px 0;
-  color: var(--color-text-muted, #555555);
+  color: var(--site-text-muted);
   max-width: 64ch;
 }
 
@@ -191,7 +196,7 @@ body {
 .techniques-list > li {
   font-size: 15px;
   line-height: 1.6;
-  color: var(--color-text-muted, #555555);
+  color: var(--site-text-muted);
   margin-bottom: 12px;
 }
 
@@ -222,7 +227,7 @@ body {
   border-radius: 8px;
   padding: 18px 20px;
   font-size: 14px;
-  color: var(--color-text-muted, #555555);
+  color: var(--site-text-muted);
 }
 
 .placeholder__tag {
@@ -321,7 +326,7 @@ body {
   font-size: 14px;
   line-height: 1.5;
   margin-top: 10px;
-  color: var(--color-text-muted, #555555);
+  color: var(--site-text-muted);
 }
 
 .findings-list {
@@ -350,7 +355,7 @@ body {
   margin: 0;
   font-size: 15px;
   line-height: 1.55;
-  color: var(--color-text-muted, #555555);
+  color: var(--site-text-muted);
 }
 
 .site-footer {
@@ -358,7 +363,7 @@ body {
   padding: 32px 0 16px;
   font-size: 14px;
   line-height: 1.6;
-  color: var(--color-text-muted, #555555);
+  color: var(--site-text-muted);
   display: grid;
   gap: 4px;
 }
@@ -382,4 +387,73 @@ body {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+@media (max-width: 768px) {
+  /* Mobile and narrow-tablet rules. The desktop breakout at min-width
+     1024px does not apply here, so we explicitly reset .tableau-embed
+     and .c1-stack to full-width and bump iframe height since Tableau
+     dashboards stack their internal panels at narrow viewports and
+     need more vertical room. */
+  .site {
+    padding: 32px 16px 64px;
+  }
+  .site-header__title {
+    font-size: 28px;
+  }
+  .site-section__heading {
+    font-size: 22px;
+  }
+  .site-header__subtitle {
+    font-size: 16px;
+  }
+  .site-section {
+    padding: 32px 0;
+  }
+  .site-nav {
+    display: none;
+  }
+
+  .tableau-embed,
+  .c1-stack {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .tableau-embed iframe {
+    height: 720px;
+  }
+  .tableau-embed--c5 {
+    min-height: 0;
+  }
+  .tableau-embed--c5 iframe {
+    width: 100%;
+    height: 720px;
+  }
+
+  .findings-list > li,
+  .card {
+    padding: 18px 20px;
+  }
+  .techniques-list {
+    padding-left: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Narrowest mobile. The 768px block already covers most layout
+     collapse; this block tightens type one more step and ensures any
+     residual flex-row clusters wrap or stack. */
+  .site-header__title {
+    font-size: 24px;
+  }
+  .site-section__heading {
+    font-size: 20px;
+  }
+  .site-section__subheading {
+    font-size: 16px;
+  }
+  .site-footer {
+    font-size: 13px;
+  }
 }
