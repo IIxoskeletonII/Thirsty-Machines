@@ -34,7 +34,6 @@ All six Tableau dashboards are published.
 - `docs/` — project brief, data feasibility memo, dataset rationale, repository standards
 - `notebooks/` — Python notebooks for cleaning, integration, and exploratory analysis
 - `report/` — five-page paper-style report and AI use appendix
-- `src/` — Python modules factored out of notebooks for reuse
 - `tableau/` — Tableau workbook files
 - `web/` — assembled static site (`index.html`, `styles/`, `scripts/`), prompt-pipeline D3 component, and the C7 static figure assets
 
